@@ -1,17 +1,17 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
+about: Feature request
 title: ''
 labels: enhancement
 assignees: ''
 
 ---
 
-# Reference a related issue
-eg. This pull request solves #2
+# Title
+Proivde short relevant title 
 
-# Description of the changes
-eg. Project now prints sentiment as a number
+# Description
+Provide more detailed description of the feature requested.
 
 # Mentions
-eg. Person responsible for reviewing: @thetechblob
+eg. Additional coloborators
