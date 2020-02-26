@@ -10,7 +10,7 @@ jobs:
       - checkout
       - python/install-deps
       - run:
-          command: ./manage.py test
+          command: ./unit_tests/services_file_handler_tests.py
           name: Test
 
 workflows:

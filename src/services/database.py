@@ -14,5 +14,7 @@ class Data:
     def persist_transactions(self):
         pass
 
+    def calculate_diff(self):
+        return 5
 
 data = Data("budget")
