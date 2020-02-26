@@ -10,7 +10,7 @@ jobs:
       - checkout
       - python/install-deps
       - run:
-          command: tests.py test
+          command: ./tests.py test
           name: Test
 
 workflows:
