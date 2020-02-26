@@ -8,12 +8,4 @@ jobs:
     executor: python/default
     steps:
       - checkout
-      - python/install-deps
-      - run:
-          command: ./unit_tests/services_file_handler_tests.py
-          name: Test
-
-workflows:
-  main:
-    jobs:
-      - build-and-test
+      - run: echo "Hello!"
