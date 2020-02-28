@@ -2,7 +2,7 @@ import unittest
 import pandas as pd
 import sys
 sys.path.insert(
-    0, "C:\\Users\\Paul.Nel\\Documents\\repos\\budget\\src\\services")
+    0, "..\\src\\services")
 
 from file_handler import FileHandler
 
