@@ -13,7 +13,7 @@ class FileHandlerTests(unittest.TestCase):
     def test_on_success_read_file_return_dataframe(self):
         handler = FileHandler()
 
-        result = handler.read_transactions("csv_test_file.csv")
+        result = handler.read_csv("csv_test_file.csv")
         self.assertIsInstance(result, pd.DataFrame)
 
 
