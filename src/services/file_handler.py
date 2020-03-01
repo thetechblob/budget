@@ -4,9 +4,9 @@ import pandas as pd
 
 class FileHandler:
 
-    def read_transactions(self, file_name):
-        df = pd.read_csv(file_name)
+    def read_csv(self, file_name):
+        df = pd.read_csv(file_name, skiprows=2)
+        df = df[['Date', 'Description', 'Account', 'Amount', 'Notes']]
+        df.rename(columns={'Notes': 'Labels'}, inplace=True)
         return df
 
-    def print_test(self):
-        print("Handled file")
