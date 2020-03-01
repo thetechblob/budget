@@ -3,8 +3,7 @@ import pandas as pd
 from pymongo import MongoClient
 import sys
 
-sys.path.insert(
-    0, "..\\src\\services")
+sys.path.insert(0, "..\\src\\services")
 
 from database import Data
 
