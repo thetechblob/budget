@@ -8,4 +8,4 @@ from controller import Controller
 
 controller = Controller("test")
 
-print(controller.update_new_transactions(r"C:\\Users\\gpaul\\Documents\\repos\\budget\\unit_tests\csv_test_file.csv"))
+print("records: " + controller.update_new_transactions(r"C:\\Users\\gpaul\\Documents\\repos\\budget\\unit_tests\csv_test_file.csv"))
