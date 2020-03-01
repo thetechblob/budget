@@ -1,4 +1,4 @@
-# Reference a related issue
+# Refence a related issue
 eg. This pull request solves #2
 
 # Description of the changes
