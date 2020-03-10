@@ -14,5 +14,4 @@ class Controller:
 
     def update_new_transactions(self, file_name):
         df = self.handler.read_csv(file_name)
-        records = self.data.persist_transactions(df)
-        return records
+        return self.data.persist_transactions(df)
