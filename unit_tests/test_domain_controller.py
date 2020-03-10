@@ -23,7 +23,7 @@ class ControllerTests(unittest.TestCase):
         self.client.drop_database(self.db_name)
 
     def test_update_new_transactions_on_execute_returns_correct_record_count(self):
-        self.db["transactions"].remove({})
+        self.db["transactions"].delete_many({})
         controller = Controller(self.db_name)
 
         result = controller.update_new_transactions(self.file_name)
