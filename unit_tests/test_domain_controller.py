@@ -16,6 +16,7 @@ class ControllerTests(unittest.TestCase):
     def setUp(self):
         self.db_name = "unittest"
         self.file_name = 'csv_test_file.csv'
+        self.seed_file = ''
         self.client = MongoClient("mongodb://localhost:27017")
         self.db = self.client[self.db_name]
 
@@ -29,6 +30,9 @@ class ControllerTests(unittest.TestCase):
         result = controller.update_new_transactions(self.file_name)
 
         self.assertEqual(result, 90)
+
+    def test_seed_db_on_execute_returns_correct_record_count(self):
+        self.db["transactions"].count_documents()
 
 
 if __name__ == '__main__':

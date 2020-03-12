@@ -15,3 +15,7 @@ class Controller:
     def update_new_transactions(self, file_name):
         df = self.handler.read_csv(file_name)
         return self.data.persist_transactions(df)
+
+    def seed_database(self, file_name):
+        df = self.handler.read_seed_csv(file_name)
+        return self.data.seed_transactions(df)

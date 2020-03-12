@@ -6,5 +6,5 @@ Budgetting tool
 To seed the data base the file must by `csv` with the following headings
 
 
-|Date|Description|Account|Amount|Labels|
+|Date|Description|Account|Amount|Notes|
 |----|-----------|-------|------|------|

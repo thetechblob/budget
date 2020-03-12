@@ -10,3 +10,5 @@ controller = Controller("test")
 
 # print(controller.update_new_transactions(r"C:\\Users\\gpaul\\Documents\\repos\\budget\\unit_tests\csv_test_file.csv"))
 print(controller.update_new_transactions(r"C:\\Users\\paul.nel\\Documents\\repos\\budget\\unit_tests\csv_test_file.csv"))
+print(controller.seed_database(r"C:\\Users\\paul.nel\\Documents\\repos\\budget\\data\\seed_file.csv"))
+
