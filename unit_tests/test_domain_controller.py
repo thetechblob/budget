@@ -17,6 +17,7 @@ class ControllerTests(unittest.TestCase):
         self.db_name = "unittest"
         self.file_name = "csv_test_file.csv"
         self.seed_file = "seed_test_file.csv"
+        self.incorrect_seed = "seed_test_file_1.csv"
         self.client = MongoClient("mongodb://localhost:27017")
         self.db = self.client[self.db_name]
 
@@ -37,6 +38,11 @@ class ControllerTests(unittest.TestCase):
         result = controller.seed_database(self.seed_file)
 
         self.assertEqual(result, 7899)
+
+    def test_seed_db_with_wrong_csv_format_throws_exception(self):
+        controller = Controller(self.db_name)
+
+        self.assertRaises(KeyError, controller.seed_database, self.incorrect_seed)
 
 
 if __name__ == '__main__':

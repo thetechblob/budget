@@ -132,3 +132,7 @@ dmypy.json
 .idea/
 .vscode
 .dev
+
+# uml
+/uml/.budget.vpp.lck
+/uml/budget.vpp.bak_000f
