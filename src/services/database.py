@@ -18,6 +18,10 @@ class Data:
         self._db["transactions"].insert_many((records.astype('str')).to_dict('records'))
         return self._db["transactions"].count_documents({})
 
+    def seed_transactions(self, records):
+        self._db["transactions"].delete_many({})
+        return self.persist_transactions(records)
+
     def calculate_diff(self):
         return 5
 
