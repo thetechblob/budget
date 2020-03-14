@@ -132,3 +132,10 @@ dmypy.json
 .idea/
 .vscode
 .dev
+
+# uml
+/uml/.budget.vpp.*
+/uml/budget.vpp.*
+
+# Other
+/data/classified_transactions.csv

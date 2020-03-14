@@ -26,7 +26,7 @@ class DatabaseTests(unittest.TestCase):
         raised = False
 
         try:
-            data.persist_transactions(self.record)
+            data.persist_classified(self.record)
         except:
             raised = True
 
@@ -34,8 +34,8 @@ class DatabaseTests(unittest.TestCase):
 
     def test_db_read_transaction_return_correct_result(self):
         data = Data(self.db_name)
-        data.persist_transactions(self.record)
-        record = data.read_transactions()
+        data.persist_classified(self.record)
+        record = data.read_classified()
 
         result = record["Date"][0] == self.record["Date"][0] and \
                  record['Description'][0] == self.record['Description'][0] and \
