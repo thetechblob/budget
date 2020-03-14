@@ -134,5 +134,5 @@ dmypy.json
 .dev
 
 # uml
-/uml/.budget.vpp.lck
-/uml/budget.vpp.bak_000f
+/uml/.budget.vpp.*
+/uml/budget.vpp.*
