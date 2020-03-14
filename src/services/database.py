@@ -6,24 +6,40 @@ class Data:
 
     def __init__(self, name):
         client = mongo.MongoClient("mongodb://localhost:27017")
-        self._db = client[name]
 
-    def read_transactions(self):
-        df = pd.DataFrame(self._db["transactions"].find({}))
+        self._db = client[name]
+        self._classified = "transactions"
+        self._unclassified = "unclassified"
+        self._prediction = "classified"
+
+    def __persist_records(self, collection, records):
+        self._db[collection].insert_many((records.astype('str')).to_dict('records'))
+        return self._db[collection].count_documents({})
+
+    def __read_records(self, collection):
+        df = pd.DataFrame(self._db[collection].find({}))
         df[["Labels"]] = df[["Labels"]].astype(int)
         df[["Amount"]] = df[["Amount"]].astype(float)
-        return df
+        return df.iloc[:, 1:]
 
-    def persist_transactions(self, records):
-        self._db["transactions"].insert_many((records.astype('str')).to_dict('records'))
-        return self._db["transactions"].count_documents({})
+    def read_classified(self):
+        return self.__read_records(collection=self._classified)
+
+    def read_unclassified(self):
+        return self.__read_records(collection=self._unclassified)
+
+    def persist_classified(self, records):
+        return self.__persist_records(collection=self._classified, records=records)
+
+    def persist_unclassified(self, records):
+        records["Labels"] = 0
+        self._db[self._unclassified].delete_many({})
+        return self.__persist_records(collection=self._unclassified, records=records)
+
+    def persist_classification(self, records):
+        self._db[self._prediction].delete_many({})
+        return self.__persist_records(collection=self._prediction, records=records)
 
     def seed_transactions(self, records):
-        self._db["transactions"].delete_many({})
-        return self.persist_transactions(records)
-
-    def calculate_diff(self):
-        return 5
-
-
-data = Data("budget")
+        self._db[self._classified].delete_many({})
+        return self.__persist_records(collection=self._classified, records=records)

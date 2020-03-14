@@ -5,10 +5,14 @@ sys.path.insert(0, "..\\src\\services")
 
 from file_handler import FileHandler
 from controller import Controller
+from svmclassifier import SVMClassifier
 
-controller = Controller("test")
+classifier = SVMClassifier()
+db_name = "test"
+classification_csv_file = "../data/classified_transactions.csv"
 
-# print(controller.update_new_transactions(r"C:\\Users\\gpaul\\Documents\\repos\\budget\\unit_tests\csv_test_file.csv"))
-print(controller.update_new_transactions(r"C:\\Users\\paul.nel\\Documents\\repos\\budget\\unit_tests\csv_test_file.csv"))
-print(controller.seed_database(r"C:\\Users\\paul.nel\\Documents\\repos\\budget\\data\\seed_file.csv"))
-
+controller = Controller(classifier, db_name, classification_csv_file)
+controller.seed_database("../data/seed_file.csv")
+controller.classify_new_transactions()
+print(classifier.name, classifier.train_accuracy)
+print(controller.confirm_csv_classification())
