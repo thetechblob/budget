@@ -22,10 +22,10 @@ class Data:
         df[["Amount"]] = df[["Amount"]].astype(float)
         return df.iloc[:, 1:]
 
-    def read_classified(self):
+    def get_classified(self):
         return self.__read_records(collection=self._classified)
 
-    def read_unclassified(self):
+    def get_unclassified(self):
         return self.__read_records(collection=self._unclassified)
 
     def persist_classified(self, records):

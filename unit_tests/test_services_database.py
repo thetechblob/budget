@@ -35,7 +35,7 @@ class DatabaseTests(unittest.TestCase):
     def test_db_read_transaction_return_correct_result(self):
         data = Data(self.db_name)
         data.persist_classified(self.record)
-        record = data.read_classified()
+        record = data.get_classified()
 
         result = record["Date"][0] == self.record["Date"][0] and \
                  record['Description'][0] == self.record['Description'][0] and \
