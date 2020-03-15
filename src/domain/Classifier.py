@@ -3,8 +3,17 @@ from abc import ABC, abstractmethod
 
 class Classifier(ABC):
 
+    @abstractmethod
     def __init__(self):
-        super().__init__()
+        pass
+
+    @abstractmethod
+    def get_name(self):
+        pass
+
+    @abstractmethod
+    def get_train_accuracy(self):
+        pass
 
     @abstractmethod
     def train(self):
@@ -13,4 +22,3 @@ class Classifier(ABC):
     @abstractmethod
     def classify(self):
         pass
-

@@ -10,9 +10,8 @@ from sklearn.metrics import accuracy_score
 
 class SVMClassifier(Classifier):
 
-    name = "SVM Classifier"
-
     def __init__(self):
+        self.name = "SVM Classifier"
         self.train_accuracy = 0
         self._model = None
 
@@ -40,17 +39,21 @@ class SVMClassifier(Classifier):
         model = Pipeline(estimators)
         return model.fit(X, y)
 
-
     def __update_records_with_class(self, df, labels):
         df["Labels"] = labels
         return df
 
+    def get_name(self):
+        return self.name
+
+    def get_train_accuracy(self):
+        return self.train_accuracy
+
     def train(self, df):
         train_X, train_y = self.__prepare_data(df)
         self._model = self.__train(train_X, train_y)
-        prediction = self._model.predict(train_X)
-        self.train_accuracy = accuracy_score(train_y, prediction)
-        return self.train_accuracy
+        classification = self._model.predict(train_X)
+        self.train_accuracy = accuracy_score(train_y, classification)
 
     def classify(self, df):
         test_X, _ = self.__prepare_data(df)

@@ -15,5 +15,5 @@ controller = Controller(classifier, db_name, classification_csv_file)
 
 controller.seed_database("../data/seed_file.csv")
 controller.classify_new_transactions()
-print(classifier.name, classifier.train_accuracy)
+print(classifier.get_name(), classifier.get_train_accuracy())
 print(controller.confirm_csv_classification())

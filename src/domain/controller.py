@@ -37,7 +37,7 @@ class Controller:
 
     def __persist_classification(self, classified):
         self.data.persist_classification(classified)
-        self.handler.write_csv(df, self.class_csv)
+        self.handler.write_csv(classified, self.class_csv)
 
     def confirm_csv_classification(self):
         df = self.handler.read_classified_csv(self.class_csv)
