@@ -1,5 +1,6 @@
 import re
 import numpy as np
+from Classifier import Classifier
 from nltk import word_tokenize
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
@@ -8,7 +9,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.metrics import accuracy_score
 
 
-class SVMClassifier:
+class SVMClassifier(Classifier):
 
     name = "SVM Classifier"
 
@@ -45,7 +46,7 @@ class SVMClassifier:
         df["Labels"] = labels
         return df
 
-    def train_model(self, df):
+    def train(self, df):
         train_X, train_y = self.__prepare_data(df)
         self._model = self.__train(train_X, train_y)
         prediction = self._model.predict(train_X)

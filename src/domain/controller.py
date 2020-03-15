@@ -24,7 +24,7 @@ class Controller:
 
     def classify_new_transactions(self):
         train_data = self.data.read_classified()
-        accuracy = self.classifier.train_model(train_data)
+        accuracy = self.classifier.train(train_data)
         df = self.data.read_unclassified()
         classified = self.classifier.classify(df)
         self.data.persist_classification(classified)
