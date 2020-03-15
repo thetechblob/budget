@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class Classifier(ABC):
+class IClassifier(ABC):
 
     @abstractmethod
     def __init__(self):

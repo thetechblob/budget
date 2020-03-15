@@ -14,7 +14,8 @@ class FileHandler:
     def read_seed_csv(self, file_name):
         return self.read_csv(file_name, skip_rows=0)
 
-    def read_classified_csv(self, file_name):
+    @staticmethod
+    def read_classified_csv(file_name):
         return pd.read_csv(file_name)
 
     @staticmethod

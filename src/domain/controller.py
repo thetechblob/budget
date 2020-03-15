@@ -24,16 +24,15 @@ class Controller:
 
     def classify_new_transactions(self):
         self.__train_model()
-        classified = self.__classify()
+        classified = self.__classify_new()
         self.__persist_classification(classified)
 
     def __train_model(self):
         train_data = self.data.get_classified()
         self.classifier.train(train_data)
 
-    def __classify(self):
-        classified = self.classifier.classify(self.data.get_unclassified())
-        return classified
+    def __classify_new(self):
+        return self.classifier.classify(self.data.get_unclassified())
 
     def __persist_classification(self, classified):
         self.data.persist_classification(classified)

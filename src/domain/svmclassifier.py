@@ -1,6 +1,6 @@
 import re
 import numpy as np
-from Classifier import Classifier
+from IClassifier import IClassifier
 from nltk import word_tokenize
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.linear_model import SGDClassifier
@@ -8,7 +8,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.metrics import accuracy_score
 
 
-class SVMClassifier(Classifier):
+class SVMClassifier(IClassifier):
 
     def __init__(self):
         self.name = "SVM Classifier"
