@@ -23,13 +23,21 @@ class Controller:
         return self.data.seed_transactions(df)
 
     def classify_new_transactions(self):
-        train_data = self.data.read_classified()
-        accuracy = self.classifier.train(train_data)
-        df = self.data.read_unclassified()
-        classified = self.classifier.classify(df)
+        self.__train_model()
+        classified = self.__classify()
+        self.__persist_classification(classified)
+
+    def __train_model(self):
+        train_data = self.data.get_classified()
+        self.classifier.train(train_data)
+
+    def __classify(self):
+        classified = self.classifier.classify(self.data.get_unclassified())
+        return classified
+
+    def __persist_classification(self, classified):
         self.data.persist_classification(classified)
         self.handler.write_csv(df, self.class_csv)
-        return accuracy
 
     def confirm_csv_classification(self):
         df = self.handler.read_classified_csv(self.class_csv)
