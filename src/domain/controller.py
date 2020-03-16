@@ -14,7 +14,7 @@ class Controller:
         self.classifier = classifier
         self.class_csv = class_csv_name
 
-    def update_new_transactions(self, file_name):
+    def get_new_transactions(self, file_name):
         df = self.handler.read_csv(file_name)
         return self.data.persist_unclassified(df)
 
@@ -25,19 +25,24 @@ class Controller:
     def classify_new_transactions(self):
         self.__train_model()
         classified = self.__classify_new()
-        self.__persist_classification(classified)
+        if classified is not None:
+            self.__persist_prediction(classified)
 
     def __train_model(self):
         train_data = self.data.get_classified()
         self.classifier.train(train_data)
 
     def __classify_new(self):
-        return self.classifier.classify(self.data.get_unclassified())
+        unclassified = self.data.get_unclassified()
+        if unclassified.shape[0] <= 0:
+            return None
+        return self.classifier.classify(unclassified)
 
-    def __persist_classification(self, classified):
-        self.data.persist_classification(classified)
+    def __persist_prediction(self, classified):
+        self.data.persist_prediction(classified)
         self.handler.write_csv(classified, self.class_csv)
 
     def confirm_csv_classification(self):
         df = self.handler.read_classified_csv(self.class_csv)
+        df["Labels"] = df["Labels"].astype("int32").astype("str")
         return self.data.persist_classified(df)

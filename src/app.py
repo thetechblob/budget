@@ -14,6 +14,7 @@ classifier = SVMClassifier()
 controller = Controller(classifier, db_name, classification_csv_file)
 
 controller.seed_database("../data/seed_file.csv")
+controller.get_new_transactions("../data/transactions.csv")
 controller.classify_new_transactions()
 print(classifier.get_name(), classifier.get_train_accuracy())
 print(controller.confirm_csv_classification())
