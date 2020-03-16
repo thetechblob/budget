@@ -28,7 +28,7 @@ class ControllerTests(unittest.TestCase):
         self.db["transactions"].delete_many({})
         controller = Controller(self.db_name)
 
-        result = controller.update_new_transactions(self.file_name)
+        result = controller.get_new_transactions(self.file_name)
 
         self.assertEqual(result, 90)
 

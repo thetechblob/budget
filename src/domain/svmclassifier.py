@@ -41,6 +41,7 @@ class SVMClassifier(IClassifier):
 
     def __update_records_with_class(self, df, labels):
         df["Labels"] = labels
+        df["Labels"] = df["Labels"].astype("int32").astype("str")
         return df
 
     def get_name(self):
@@ -56,6 +57,8 @@ class SVMClassifier(IClassifier):
         self.train_accuracy = accuracy_score(train_y, classification)
 
     def classify(self, df):
+        if df.shape[0] <= 0:
+            raise ValueError("Classification failed.  Empty dataframe.")
         test_X, _ = self.__prepare_data(df)
         labels = self._model.predict(test_X)
         df = self.__update_records_with_class(df, labels)

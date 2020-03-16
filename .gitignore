@@ -139,3 +139,4 @@ dmypy.json
 
 # Other
 /data/classified_transactions.csv
+./test.py
