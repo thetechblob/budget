@@ -12,7 +12,6 @@ class Data:
         self._unclassified = "unclassified"
         self._prediction = "prediction"
 
-    # TODO this does not work as expected due to the check for shape[0] > 0
     def __persist_records(self, collection, records, seed=False):
         unique_records = records if seed else self.__filter(records)
         if unique_records.shape[0] > 0:
