@@ -44,5 +44,5 @@ class Controller:
 
     def confirm_csv_classification(self):
         df = self.handler.read_classified_csv(self.class_csv)
-        df["Labels"] = df["Labels"].astype("int32").astype("str")
+        # df["Labels"] = df["Labels"].astype("int32").astype("str")
         return self.data.persist_classified(df)
