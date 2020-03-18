@@ -12,10 +12,17 @@ class FileHandler:
         return df
 
     def read_seed_csv(self, file_name):
-        return self.read_csv(file_name, skip_rows=0)
+        df = self.read_csv(file_name, skip_rows=0)
+        return self.__convert_labels(df)
 
     def read_classified_csv(self, file_name):
-        return pd.read_csv(file_name)
+        df = pd.read_csv(file_name)
+        return self.__convert_labels(df)
+
+    @staticmethod
+    def __convert_labels(df):
+        df["Labels"] = df["Labels"].astype("int32").astype("str")
+        return df
 
     @staticmethod
     def write_csv(df, file_name):

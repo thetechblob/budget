@@ -1,18 +1,17 @@
 import re
 import numpy as np
+from IClassifier import IClassifier
 from nltk import word_tokenize
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.linear_model import SGDClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import accuracy_score
 
 
-class SVMClassifier:
-
-    name = "SVM Classifier"
+class SVMClassifier(IClassifier):
 
     def __init__(self):
+        self.name = "SVM Classifier"
         self.train_accuracy = 0
         self._model = None
 
@@ -40,19 +39,26 @@ class SVMClassifier:
         model = Pipeline(estimators)
         return model.fit(X, y)
 
-
     def __update_records_with_class(self, df, labels):
         df["Labels"] = labels
+        df["Labels"] = df["Labels"].astype("int32").astype("str")
         return df
 
-    def train_model(self, df):
-        train_X, train_y = self.__prepare_data(df)
-        self._model = self.__train(train_X, train_y)
-        prediction = self._model.predict(train_X)
-        self.train_accuracy = accuracy_score(train_y, prediction)
+    def get_name(self):
+        return self.name
+
+    def get_train_accuracy(self):
         return self.train_accuracy
 
+    def train(self, df):
+        train_X, train_y = self.__prepare_data(df)
+        self._model = self.__train(train_X, train_y)
+        classification = self._model.predict(train_X)
+        self.train_accuracy = accuracy_score(train_y, classification)
+
     def classify(self, df):
+        if df.shape[0] <= 0:
+            raise ValueError("Classification failed.  Empty dataframe.")
         test_X, _ = self.__prepare_data(df)
         labels = self._model.predict(test_X)
         df = self.__update_records_with_class(df, labels)
