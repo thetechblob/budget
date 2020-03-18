@@ -46,6 +46,15 @@ class ControllerTests(unittest.TestCase):
 
         self.assertRaises(KeyError, controller.seed_database, self.incorrect_seed)
 
+    def test_get_nett_balance_on_execute_returns_correct_balance(self):
+        self.db["transactions"].delete_many({})
+        controller = Controller(SVMClassifier(), self.db_name, "")
+        controller.seed_database(file_name=self.seed_file)
+
+        result = round(controller.get_nett_balance("2015-01-19", "2015-01-26"), 2)
+
+        self.assertEqual(-7095.81, result)
+
 
 if __name__ == '__main__':
     unittest.main()

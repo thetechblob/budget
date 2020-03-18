@@ -55,6 +55,12 @@ class Data:
     def get_unclassified(self):
         return self.__get_records(collection=self._unclassified)
 
+    def get_range(self, collection, start, end):
+        df = pd.DataFrame(self._db[collection].find({}))
+        df = df[df["Date"] >= start]
+        df = df[df["Date"] <= end]
+        return df
+
     def persist_classified(self, records):
         return self.__persist_records(collection=self._classified, records=records)
 
