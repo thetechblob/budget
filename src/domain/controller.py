@@ -28,6 +28,9 @@ class Controller:
         if classified is not None:
             self.__persist_prediction(classified)
 
+    def all_to_csv(self, file_name):
+        self.data.get_classified().to_csv(file_name)
+
     def __train_model(self):
         train_data = self.data.get_classified()
         self.classifier.train(train_data)
@@ -38,6 +41,7 @@ class Controller:
             return None
         return self.classifier.classify(unclassified)
 
+    # TODO this module cleans up merge from
     def __persist_prediction(self, classified):
         self.data.persist_prediction(classified)
         self.handler.write_csv(classified, self.class_csv)
@@ -49,4 +53,3 @@ class Controller:
     def get_nett_balance(self, start, end):
         df = self.data.get_range("transactions", start, end)
         return sum(df["Amount"].astype(float) * df["Labels"].astype(int))
-

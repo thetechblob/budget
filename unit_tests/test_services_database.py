@@ -8,7 +8,7 @@ sys.path.insert(0, "..\\src\\domain")
 
 from database import Data
 from file_handler import FileHandler
-from svmclassifier import SVMClassifier
+from classifier_svm import SVMClassifier
 
 
 class DatabaseTests(unittest.TestCase):

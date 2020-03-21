@@ -9,7 +9,7 @@ sys.path.insert(0, '..\\src\\services')
 from database import Data
 from file_handler import FileHandler
 from controller import Controller
-from svmclassifier import SVMClassifier
+from classifier_svm import SVMClassifier
 
 
 class ControllerTests(unittest.TestCase):
