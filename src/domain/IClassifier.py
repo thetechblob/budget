@@ -16,6 +16,10 @@ class IClassifier(ABC):
         pass
 
     @abstractmethod
+    def get_test_accuracy(self):
+        pass
+
+    @abstractmethod
     def train(self):
         pass
 
